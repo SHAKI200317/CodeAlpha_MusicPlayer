@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AuraPlayer | Premium Music Experience</title>
+
+    <meta name="description"
+        content="AuraPlayer - A beautiful modern JavaScript music player with playlists, favorites and music library.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= BACKGROUND ================= -->
+
+    <div class="background">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+        <div class="noise"></div>
+    </div>
+
+
+    <!-- ================= APP ================= -->
+
+    <div class="app">
+
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-wave-square"></i>
+                </div>
+
+                <div>
+                    <h2>Aura<span>Player</span></h2>
+                    <small>Your music universe</small>
+                </div>
+
+            </div>
+
+
+            <nav>
+
+                <p class="menu-title">DISCOVER</p>
+
+                <button class="nav-item active"
+                    data-section="home">
+
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
+
+                </button>
+
+
+                <button class="nav-item"
+                    data-section="library">
+
+                    <i class="fa-solid fa-music"></i>
+                    <span>My Library</span>
+
+                </button>
+
+
+                <button class="nav-item"
+                    data-section="favorites">
+
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Favorites</span>
+
+                    <b class="nav-count"
+                        id="favoriteNavCount">0</b>
+
+                </button>
+
+
+                <button class="nav-item"
+                    data-section="recent">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Recently Played</span>
+
+                </button>
+
+
+                <p class="menu-title playlist-title">
+                    PLAYLISTS
+                </p>
+
+
+                <button class="nav-item playlist-nav"
+                    data-playlist="chill">
+
+                    <span class="playlist-dot purple-dot"></span>
+                    <span>Chill Vibes</span>
+
+                </button>
+
+
+                <button class="nav-item playlist-nav"
+                    data-playlist="night">
+
+                    <span class="playlist-dot blue-dot"></span>
+                    <span>Night Drive</span>
+
+                </button>
+
+
+                <button class="nav-item playlist-nav"
+                    data-playlist="energy">
+
+                    <span class="playlist-dot pink-dot"></span>
+                    <span>Energy Hits</span>
+
+                </button>
+
+
+                <button class="nav-item playlist-nav"
+                    data-playlist="favorites">
+
+                    <span class="playlist-dot yellow-dot"></span>
+                    <span>My Favorites</span>
+
+                </button>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+
+            <div class="sidebar-bottom">
+
+                <button class="import-btn"
+                    id="importBtn">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <span>Import Music</span>
+
+                </button>
+
+                <input
+                    type="file"
+                    id="musicInput"
+                    accept="audio/*"
+                    multiple
+                    hidden>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        SR
+                    </div>
+
+                    <div>
+                        <strong>Music Lover</strong>
+                        <small>Premium Listener</small>
+                    </div>
+
+                    <i class="fa-solid fa-ellipsis"></i>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search songs, artists, albums...">
+
+                    <kbd>Ctrl K</kbd>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button
+                        class="icon-button"
+                        id="notificationBtn">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span class="notification-dot"></span>
+
+                    </button>
+
+
+                    <button
+                        class="icon-button"
+                        id="themeButton">
+
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- ================= HOME ================= -->
+
+            <div id="homeSection"
+                class="page-section active-section">
+
+
+                <!-- HERO -->
+
+                <section class="hero">
+
+                    <div class="hero-content">
+
+                        <div class="hero-badge">
+
+                            <span></span>
+
+                            PREMIUM MUSIC EXPERIENCE
+
+                        </div>
+
+
+                        <h1>
+
+                            Feel the music.
+                            <br>
+
+                            <span>Live the moment.</span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Discover beautiful sounds,
+                            create playlists and enjoy
+                            your favorite music with
+                            AuraPlayer.
+
+                        </p>
+
+
+                        <div class="hero-buttons">
+
+                            <button
+                                class="primary-btn"
+                                id="heroPlay">
+
+                                <i class="fa-solid fa-play"></i>
+
+                                Start Listening
+
+                            </button>
+
+
+                            <button
+                                class="secondary-btn"
+                                id="exploreBtn">
+
+                                Explore Library
+
+                                <i class="fa-solid fa-arrow-down"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="hero-visual">
+
+                        <div class="floating-disc disc-one">
+
+                            <img
+                                src="images/cover2.jpg"
+                                alt="Album">
+
+                        </div>
+
+
+                        <div class="floating-disc disc-two">
+
+                            <img
+                                src="images/cover5.jpg"
+                                alt="Album">
+
+                        </div>
+
+
+                        <div class="floating-disc disc-three">
+
+                            <img
+                                src="images/cover8.jpg"
+                                alt="Album">
+
+                        </div>
+
+
+                        <div class="hero-disc">
+
+                            <img
+                                src="images/cover1.jpg"
+                                id="heroCover"
+                                alt="Current album">
+
+                            <div class="disc-center">
+
+                                <i class="fa-solid fa-music"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- STATS -->
+
+                <section class="stats">
+
+                    <div class="stat-card">
+
+                        <i class="fa-solid fa-music"></i>
+
+                        <div>
+
+                            <strong id="songCount">
+                                20
+                            </strong>
+
+                            <span>Songs</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        <div>
+
+                            <strong id="favoriteCount">
+                                0
+                            </strong>
+
+                            <span>Favorites</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <div>
+
+                            <strong id="recentCount">
+                                0
+                            </strong>
+
+                            <span>Recently Played</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <i class="fa-solid fa-headphones"></i>
+
+                        <div>
+
+                            <strong>HD</strong>
+
+                            <span>Quality</span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- GENRES -->
+
+                <section class="content-section">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                EXPLORE
+                            </span>
+
+                            <h2>
+                                Browse by Mood
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="genre-grid">
+
+
+                        <div
+                            class="genre-card purple"
+                            data-playlist="chill">
+
+                            <div class="genre-icon">
+
+                                <i class="fa-solid fa-cloud-moon"></i>
+
+                            </div>
+
+                            <span>Dreamy</span>
+
+                            <small>Chill Vibes</small>
+
+                        </div>
+
+
+
+                        <div
+                            class="genre-card blue"
+                            data-playlist="night">
+
+                            <div class="genre-icon">
+
+                                <i class="fa-solid fa-moon"></i>
+
+                            </div>
+
+                            <span>Night Drive</span>
+
+                            <small>Late night sounds</small>
+
+                        </div>
+
+
+
+                        <div
+                            class="genre-card pink"
+                            data-playlist="energy">
+
+                            <div class="genre-icon">
+
+                                <i class="fa-solid fa-bolt"></i>
+
+                            </div>
+
+                            <span>Energy</span>
+
+                            <small>Feel the beat</small>
+
+                        </div>
+
+
+
+                        <div
+                            class="genre-card orange"
+                            data-playlist="favorites">
+
+                            <div class="genre-icon">
+
+                                <i class="fa-solid fa-star"></i>
+
+                            </div>
+
+                            <span>Favorites</span>
+
+                            <small>Your top songs</small>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- RECENT SONGS -->
+
+                <section class="content-section">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                YOUR MUSIC
+                            </span>
+
+                            <h2>
+                                Recently Added
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="view-all"
+                            data-section="library">
+
+                            View all
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="songs-grid"
+                        id="homeSongsGrid">
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+
+            <!-- ================= DYNAMIC PAGE ================= -->
+
+            <div
+                id="dynamicSection"
+                class="page-section">
+
+                <div class="dynamic-header">
+
+                    <div>
+
+                        <span
+                            class="section-label"
+                            id="dynamicLabel">
+                            YOUR COLLECTION
+                        </span>
+
+                        <h1 id="dynamicTitle">
+                            My Library
+                        </h1>
+
+                        <p id="dynamicDescription">
+                            All your favorite sounds
+                            in one beautiful place.
+                        </p>
+
+                    </div>
+
+
+                    <div class="sort-box">
+
+                        <i class="fa-solid fa-filter"></i>
+
+                        <select id="sortSongs">
+
+                            <option value="default">
+                                Recently Added
+                            </option>
+
+                            <option value="title">
+                                Title
+                            </option>
+
+                            <option value="artist">
+                                Artist
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="songs-grid"
+                    id="songsGrid">
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+
+        <!-- ================= NOW PLAYING ================= -->
+
+        <aside class="now-playing">
+
+
+            <div class="now-playing-header">
+
+                <div>
+
+                    <span>NOW PLAYING</span>
+
+                    <div class="live-indicator">
+
+                        <span></span>
+
+                        LIVE
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="morePlayerBtn">
+
+                    <i class="fa-solid fa-ellipsis"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ALBUM -->
+
+            <div class="album-container">
+
+                <div class="album-glow"></div>
+
+                <div class="album-shadow"></div>
+
+                <img
+                    src="images/cover1.jpg"
+                    id="albumCover"
+                    class="album-cover"
+                    alt="Album cover">
+
+                <div class="vinyl-ring"></div>
+
+            </div>
+
+
+
+            <!-- SONG INFORMATION -->
+
+            <div class="song-information">
+
+                <div>
+
+                    <h2 id="songTitle">
+                        Midnight Dreams
+                    </h2>
+
+                    <p id="songArtist">
+                        Aura Collective
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="favoriteBtn"
+                    class="favorite-button">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- EQUALIZER -->
+
+            <div
+                class="equalizer"
+                id="equalizer">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-area">
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+                <input
+                    type="range"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0">
+
+                <span id="duration">
+                    0:00
+                </span>
+
+            </div>
+
+
+
+            <!-- CONTROLS -->
+
+            <div class="player-controls">
+
+                <button
+                    id="shuffleBtn"
+                    title="Shuffle">
+
+                    <i class="fa-solid fa-shuffle"></i>
+
+                </button>
+
+
+                <button
+                    id="previousBtn"
+                    title="Previous">
+
+                    <i class="fa-solid fa-backward-step"></i>
+
+                </button>
+
+
+                <button
+                    class="play-button"
+                    id="playBtn"
+                    title="Play">
+
+                    <i class="fa-solid fa-play"></i>
+
+                </button>
+
+
+                <button
+                    id="nextBtn"
+                    title="Next">
+
+                    <i class="fa-solid fa-forward-step"></i>
+
+                </button>
+
+
+                <button
+                    id="repeatBtn"
+                    title="Repeat">
+
+                    <i class="fa-solid fa-repeat"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- EXTRA -->
+
+            <div class="extra-controls">
+
+                <button id="backwardBtn">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                    <span>10</span>
+
+                </button>
+
+
+                <button id="forwardBtn">
+
+                    <span>10</span>
+
+                    <i class="fa-solid fa-rotate-right"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- VOLUME -->
+
+            <div class="volume-control">
+
+                <button id="muteBtn">
+
+                    <i class="fa-solid fa-volume-low"></i>
+
+                </button>
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.8">
+
+                <span id="volumeValue">
+                    80%
+                </span>
+
+            </div>
+
+
+
+            <!-- QUEUE -->
+
+            <div class="queue">
+
+                <div class="queue-header">
+
+                    <h3>
+                        Up Next
+                    </h3>
+
+                    <span id="queueCount">
+                        0 songs
+                    </span>
+
+                </div>
+
+
+                <div id="queueList"></div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+
+    <!-- AUDIO -->
+
+    <audio id="audio"></audio>
+
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span>
+            Done
+        </span>
+
+    </div>
+
+
+
+    <!-- MOBILE OVERLAY -->
+
+    <div
+        class="mobile-overlay"
+        id="mobileOverlay">
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
